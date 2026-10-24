@@ -47,13 +47,9 @@ SDR#でARIB STD-T98を復調するプラグインです。コーデックのデ�
 
 ```powershell
 ./tools/build.ps1 -SdrSharpExe C:/SDRSharp/SDRSharp.dotnet8.exe
-# 以下は開発用の比較試験にだけ必要
-python -m pip install numpy torch safetensors
-./tools/check.ps1
-./tools/package.ps1
 ```
 
-FFTW開発ファイルがなければ `tools/setup-fftw.ps1` で取得・ハッシュ検証します。SDR#の参照アセンブリは手元の実行ファイルから抽出し、配布しません。ビルド時のモデル埋め込みとSDK抽出はPython標準ライブラリだけを使用します。Python版の参照実装は `tests/reference` にあり、実行用配布には含みません。
+FFTW開発ファイルがなければ `tools/setup-fftw.ps1` で取得し、ハッシュを検証します。
 
 
 ## ライセンス・由来
