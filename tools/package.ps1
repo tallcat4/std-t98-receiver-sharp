@@ -15,12 +15,12 @@ try {
     Copy-Item src/SDRSharp.T98/bin/Release/net8.0-windows/SDRSharp.Plugin.T98.dll $plugin
     foreach($name in @('t98_native.dll','ambe2.dll','libfftw3f-3.dll')) {Copy-Item (Join-Path 'build/native' $name) $plugin}
     Copy-Item -Recurse licenses (Join-Path $Output 'licenses')
-    Copy-Item README.md,LICENSE,FORMAT.md,THIRD_PARTY_NOTICES.md $Output
+    Copy-Item README.md,LICENSE,FORMAT.md,THIRD_PARTY_NOTICES.md,thumbnail.png $Output
     Set-Content -LiteralPath (Join-Path $Output 'VERSION.txt') -Value $version -Encoding ascii
     # Source allowlist: no development references, binaries, caches or captures.
     & python tools/source-archive.py (Join-Path $Output 'std-t98-receiver-sharp-source.zip')
     if($LASTEXITCODE) {throw 'Source archive failed'}
-    $binaryContents=@('Plugins','licenses','README.md','LICENSE','FORMAT.md','THIRD_PARTY_NOTICES.md','VERSION.txt') | ForEach-Object {Join-Path $Output $_}
+    $binaryContents=@('Plugins','licenses','README.md','LICENSE','FORMAT.md','THIRD_PARTY_NOTICES.md','VERSION.txt','thumbnail.png') | ForEach-Object {Join-Path $Output $_}
     Compress-Archive -LiteralPath $binaryContents -DestinationPath (Join-Path $Output 'STD-T98-Receiver.zip')
     $checksums=@()
     foreach($name in @('STD-T98-Receiver.zip','std-t98-receiver-sharp-source.zip')) {

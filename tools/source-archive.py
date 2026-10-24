@@ -3,7 +3,7 @@ from pathlib import Path
 import zipfile
 
 root=Path(__file__).resolve().parents[1]
-allowed=['src','native','tools','tests','models','third_party','licenses','.github','README.md','LICENSE','FORMAT.md','THIRD_PARTY_NOTICES.md','.gitignore','.gitattributes']
+allowed=['src','native','tools','tests','models','third_party','licenses','.github','README.md','LICENSE','FORMAT.md','THIRD_PARTY_NOTICES.md','thumbnail.png','.gitignore','.gitattributes']
 with zipfile.ZipFile(sys.argv[1],'x',compression=zipfile.ZIP_DEFLATED) as archive:
     for name in allowed:
         path=root/name

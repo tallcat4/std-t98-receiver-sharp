@@ -16,7 +16,8 @@ expected = {prefix + name for name in runtime}
 with zipfile.ZipFile(folder / 'STD-T98-Receiver.zip') as archive:
     files = {n.replace('\\', '/') for n in archive.namelist() if not n.endswith('/')}
     assert {n for n in files if n.startswith('Plugins/')} == expected, 'Unexpected plugin file'
-    assert files == expected | {'README.md', 'LICENSE', 'FORMAT.md', 'THIRD_PARTY_NOTICES.md', 'VERSION.txt', 'licenses/ambe2-c.txt', 'licenses/fftw.txt'}, files
+    assert files == expected | {'README.md', 'LICENSE', 'FORMAT.md', 'THIRD_PARTY_NOTICES.md', 'VERSION.txt', 'thumbnail.png', 'licenses/ambe2-c.txt', 'licenses/fftw.txt'}, files
+    assert archive.read('thumbnail.png') == (root / 'thumbnail.png').read_bytes()
     assert archive.read('VERSION.txt').decode().strip() == version
     assert b'Version 3, 29 June 2007' in archive.read('LICENSE')
     for name in runtime:
@@ -34,6 +35,7 @@ with zipfile.ZipFile(folder / 'std-t98-receiver-sharp-source.zip') as archive:
         assert not path.name.startswith('secret-cache.json')
     assert 'std-t98-receiver-sharp/.github/workflows/release.yml' in files
     assert 'std-t98-receiver-sharp/.gitattributes' in files
+    assert archive.read('std-t98-receiver-sharp/thumbnail.png') == (root / 'thumbnail.png').read_bytes()
     source_project = ET.fromstring(archive.read('std-t98-receiver-sharp/src/SDRSharp.T98/SDRSharp.T98.csproj'))
     assert source_project.findtext('./PropertyGroup/Version') == version
 verified = set()

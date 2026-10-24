@@ -3,6 +3,10 @@
 SDR#でARIB STD-T98を復調するプラグインです。コーデックのデコードおよび、Alinco社製デジタル簡易無線の強化秘話を含む秘話コードを全自動で解読します。AMBE+2以外のコーデックには対応していません。
 このプラグインは [std-t98-receiver](https://github.com/tallcat4/std-t98-receiver)、[std-t98-cracker](https://github.com/tallcat4/std-t98-cracker)、[std-t98-vocode](https://github.com/tallcat4/std-t98-vocode)、[SPEAR](https://github.com/tallcat4/SPEAR) をベースに、これらの機能をSDR#向けにプラグイン化したものです。
 
+<p align="center">
+  <img src="thumbnail.png" alt="STD-T98 Receiverの受信画面。アイパターン、秘話コード、CSM・UC・メーカー情報を表示" width="420">
+</p>
+
 ## インストール方法
 
 1. Releasesから `STD-T98-Receiver.zip` をダウンロードして展開し、`Plugins/SDRSharp.T98` フォルダーをSDR#の `Plugins` 内へコピーします。
