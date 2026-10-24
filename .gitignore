@@ -1,0 +1,17 @@
+references/
+build/
+artifacts/
+**/bin/
+**/obj/
+**/__pycache__/
+*.user
+.vs/
+secret-cache.json
+secret-cache.json.*.tmp
+*.cf32
+*.burst
+*.llr
+!third_party/ambe2/tests/vectors/*.llr
+*.wav
+.env
+.env.*

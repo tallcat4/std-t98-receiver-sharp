@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework><UseWindowsForms>true</UseWindowsForms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks><Nullable>enable</Nullable><ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget><AssemblyName>SDRSharp.Plugin.T98</AssemblyName>
+    <Version>1.0.0</Version>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    <Description>Automatic single-channel STD-T98 receiver plugin for SDR#.</Description>
+    <SdkDirectory Condition="'$(SdkDirectory)'==''">$(MSBuildThisFileDirectory)../../build/sdk</SdkDirectory>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SDRSharp.Common"><HintPath>$(SdkDirectory)/SDRSharp.Common.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SDRSharp.Radio"><HintPath>$(SdkDirectory)/SDRSharp.Radio.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SDRSharp.PanView"><HintPath>$(SdkDirectory)/SDRSharp.PanView.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <Target Name="CheckSdk" BeforeTargets="ResolveReferences" Condition="!Exists('$(SdkDirectory)/SDRSharp.Common.dll')">
+    <Error Text="Supply -SdkDirectory or run tools/extract-sdk.py against a local SDR# executable." />
+  </Target>
+</Project>
